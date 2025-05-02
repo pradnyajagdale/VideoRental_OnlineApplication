@@ -53,7 +53,7 @@ public class UserServiceImpl implements  UserService {
             roleid = userRoleInfo.get().getRoleid();
         }
 
-        String rawPassword = passwordEncoder.encode(getUserLoginRequest.getPassword());
+        String rawPassword = getUserLoginRequest.getPassword();
         String hashedPasswordFromDB = userbyemail.get().getUpassword();
 
         if(userbyemail.isPresent() && passwordEncoder.matches(rawPassword, hashedPasswordFromDB) &&  userbyemail.get().getRole().getRoleid()==roleid)
