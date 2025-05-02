@@ -9,24 +9,36 @@ import jakarta.persistence.*;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Nonnull
+    @Column(name = "userid")
     int userid;
+
+    @Column(name = "ufirstname")
     String ufirstname;
+
+    @Column(name = "ulastname")
     String ulastname;
-    String email;
-    String password;
-    int roleid;
+
+    @Column(name = "uemail")
+    String uemail;
+
+    @Column(name = "upassword")
+    String upassword;
+
+    @ManyToOne
+    @JoinColumn(name = "roleid", referencedColumnName = "roleid")
+    private RoleEntity role;
 
     public UserEntity() {
 
     }
-    public UserEntity(int userid, String ufirstname, String ulastname, String email, String password, int roleid) {
-        this.userid = userid;
+    public UserEntity(String ufirstname, String ulastname, String uemail, String upassword, RoleEntity role) {
         this.ufirstname = ufirstname;
         this.ulastname = ulastname;
-        this.email = email;
-        this.password = password;
-        this.roleid = roleid;
+        this.uemail = uemail;
+        this.upassword = upassword;
+        this.role=role;
     }
     public int getUserid() {
         return userid;
@@ -46,23 +58,29 @@ public class UserEntity {
     public void setUlastname(String ulastname) {
         this.ulastname = ulastname;
     }
-    public String getEmail() {
-        return email;
+
+    public String getUemail() {
+        return uemail;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setUemail(String uemail) {
+        this.uemail = uemail;
     }
-    public String getPassword() {
-        return password;
+
+    public String getUpassword() {
+        return upassword;
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    public void setUpassword(String upassword) {
+        this.upassword = upassword;
     }
-    public int getRoleid() {
-        return roleid;
+
+    public RoleEntity getRole() {
+        return role;
     }
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     @Override
@@ -71,9 +89,9 @@ public class UserEntity {
                 "userid=" + userid +
                 ", ufirstname='" + ufirstname + '\'' +
                 ", ulastname='" + ulastname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roleid=" + roleid +
+                ", uemail='" + uemail + '\'' +
+                ", upassword='" + upassword + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

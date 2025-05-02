@@ -1,40 +1,36 @@
-package com.rent.video.system.dto;
+package com.rent.video.system.exchnage;
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rent.video.system.dto.Role;
+import com.rent.video.system.dto.User;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
-
-    int userid;
-     String ufirstname;
+public class GetUserRegistrationRequest {
+    @JsonProperty("ufirstname")
+    String ufirstname;
+    @JsonProperty("ulastname")
     String ulastname;
+    @JsonProperty("uemail")
     String uemail;
+    @JsonProperty("upassword")
     String upassword;
-    Role role;
-    public User()
+    @JsonProperty("urole")
+    String urole;
+
+    public GetUserRegistrationRequest()
     {
 
     }
 
-    public User(int userid, String ufirstname, String ulastname, String uemail, String upassword, Role role) {
-        this.userid = userid;
+    public GetUserRegistrationRequest( String ufirstname, String ulastname, String uemail, String upassword, String urole) {
         this.ufirstname = ufirstname;
         this.ulastname = ulastname;
         this.uemail = uemail;
         this.upassword = upassword;
-        this.role = role;
+        this.urole = urole;
     }
 
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
 
     public String getUfirstname() {
         return ufirstname;
@@ -68,22 +64,22 @@ public class User {
         this.upassword = upassword;
     }
 
-    public Role getRole() {
-        return role;
+    public String getUrole() {
+        return urole;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUrole(String urole) {
+        this.urole = urole;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                ", ufirstname='" + ufirstname + '\'' +
+        return "GetUserRegistrationRequest{" +
+                "ufirstname='" + ufirstname + '\'' +
                 ", ulastname='" + ulastname + '\'' +
                 ", uemail='" + uemail + '\'' +
                 ", upassword='" + upassword + '\'' +
-                ", role=" + role +
+                ", urole='" + urole + '\'' +
                 '}';
     }
 }
